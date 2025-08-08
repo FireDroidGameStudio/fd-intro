@@ -7,6 +7,7 @@ class_name FDIntro
 var _generate_intro_button: Callable = _generate_intro
 
 @onready var _animation_player: AnimationPlayer = get_node_or_null("AnimationPlayer")
+@onready var _texture_rect: TextureRect = get_node_or_null("TextureRect")
 
 
 func _ready() -> void:
@@ -24,8 +25,13 @@ func _physics_process(delta: float) -> void:
 func _generate_intro() -> void:
 	if _animation_player == null:
 		_animation_player = AnimationPlayer.new()
-		add_child(_animation_player)
+		add_child(_animation_player, true)
 		_animation_player.set_owner(self)
+	if _texture_rect == null:
+		_texture_rect = TextureRect.new()
+		add_child(_texture_rect, true)
+		_texture_rect.set_owner(self)
+		_texture_rect.call_deferred(&"set_anchors_preset", Control.PRESET_FULL_RECT)
 	var animation_library: AnimationLibrary = (
 		_animation_player.get_animation_library(&"FDIntro")
 	)
@@ -41,4 +47,5 @@ func _generate_intro() -> void:
 
 func _update_default_animation(animation: Animation) -> void:
 	animation.clear()
-	animation
+	var track_index: int = animation.add_track(Animation.TYPE_VALUE)
+	animation.track_set_path(track_index, _texture_rect.name + ":texture")
