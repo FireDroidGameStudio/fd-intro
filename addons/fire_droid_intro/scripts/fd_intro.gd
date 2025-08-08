@@ -22,6 +22,10 @@ func _physics_process(delta: float) -> void:
 	pass
 
 
+func generate_intro() -> void:
+	_generate_intro()
+
+
 func _generate_intro() -> void:
 	if _animation_player == null:
 		_animation_player = AnimationPlayer.new()
