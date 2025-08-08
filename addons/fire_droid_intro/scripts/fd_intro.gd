@@ -3,7 +3,7 @@ extends Node
 class_name FDIntro
 
 
-@export_tool_button("Generate Animation", "AnimationMixer")
+@export_tool_button("Generate Intro", "AnimationMixer")
 var _generate_intro_button: Callable = _generate_intro
 
 @onready var _animation_player: AnimationPlayer = get_node_or_null("AnimationPlayer")
