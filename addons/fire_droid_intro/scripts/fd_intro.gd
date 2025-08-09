@@ -45,7 +45,9 @@ func _generate_intro() -> void:
 		_texture_rect = TextureRect.new()
 		add_child(_texture_rect, true)#, Node.INTERNAL_MODE_BACK)
 		_texture_rect_node_name = _texture_rect.name
-		_texture_rect.call_deferred(&"set_anchors_preset", Control.PRESET_FULL_RECT)
+		_texture_rect.set_expand_mode(TextureRect.EXPAND_IGNORE_SIZE)
+		_texture_rect.set_stretch_mode(TextureRect.STRETCH_KEEP_ASPECT_CENTERED)
+		_texture_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT, Control.PRESET_MODE_MINSIZE)
 		_texture_rect.set_owner(self)
 	var animation_library: AnimationLibrary = (
 		_animation_player.get_animation_library(&"FDIntro")
