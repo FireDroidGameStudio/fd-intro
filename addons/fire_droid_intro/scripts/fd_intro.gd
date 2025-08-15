@@ -59,10 +59,10 @@ func _generate_intro() -> void:
 	if animation == null:
 		animation = Animation.new()
 		animation_library.add_animation(&"default", animation)
-	_update_default_animation(animation)
+	_update_animation_frames(animation)
 
 
-func _update_default_animation(animation: Animation) -> void:
+func _update_animation_frames(animation: Animation) -> void:
 	animation.clear()
 	var frame_count: int = frames.get_frame_count(&"default")
 	var total_duration: float = 0.0
